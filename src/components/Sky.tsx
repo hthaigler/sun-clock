@@ -26,9 +26,6 @@ const TheSky = styled.div`
     width: 100vw;
     height: 50vh;
     position: relative;
-    left: 0%;
-    top: 0%;
-    z-index: -3;
     overflow: hidden;
 `;
 

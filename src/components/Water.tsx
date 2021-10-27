@@ -28,10 +28,9 @@ const TheWater = styled.div`
     border-top: .5px solid white;
     width: 100vw;
     height: 50vh;
-    position: fixed;
-    left: 0%;
-    top: 50%;
+    position: relative;
     overflow: hidden;
+    box-sizing: border-box;
 `;
 
 const NightWater = styled(TheWater)<{opacity: number; active: boolean}>`

@@ -24,8 +24,8 @@ function App () {
 
   return (
     <div className="App">
-      <Water/>
       <Sky/>
+      <Water/>
       <TimezoneWrapper>
         <TimezoneSelector></TimezoneSelector>
       </TimezoneWrapper>

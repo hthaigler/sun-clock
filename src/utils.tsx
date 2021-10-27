@@ -29,7 +29,7 @@ export function getCycleOpacity(date: Date, sunrise: number, sunset: number, inv
     if (y < 0) {
         return 0;
     }
-    return 1 - (y * (.9 / CEILING))
+    return 1 - (y * (.7 / CEILING))
 }
 
 export function isDaylight(date: Date, sunrise: number, sunset: number): boolean {
