@@ -1,26 +1,31 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import axios from 'axios';
+import { useEffect } from 'react';
+import { updateWeather, WeatherData } from './state/weather';
+import { Sky } from './components/Sky';
+import { useDispatch } from 'react-redux';
+import { Water } from './components/Water';
 
-function App() {
+function App () {
+
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    async function getWeather() {
+      const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Alpharetta&appid=be2c8b47db11b9e2a67c020b9065d4eb&units=imperial`)
+
+      const data = response.data as WeatherData
+      dispatch(updateWeather(data))
+    }
+
+    getWeather()
+  });
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Water/>
+      <Sky/>
     </div>
-  );
+  )
 }
 
 export default App;
