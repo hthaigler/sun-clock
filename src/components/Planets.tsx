@@ -1,6 +1,5 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { MOON_WHITE, WATER_BLUE, SUN_YELLOW } from '../consts/colors';
 import {getSunYPos, getMoonYPos, getCycleOpacity, isDaylight} from '../utils';
 
 export class Sun extends React.Component<{
@@ -14,10 +13,9 @@ export class Sun extends React.Component<{
 }> {
     render() {
         return (
-            <Wrapper>
-                <SunCircle y={getSunYPos(this.props.date, this.props.sunrise, this.props.sunset)}
-                    active={isDaylight(this.props.date, this.props.sunrise, this.props.sunset)}/>
-            </Wrapper> )
+            <SunCircle y={getSunYPos(this.props.date, this.props.sunrise, this.props.sunset)}
+                active={isDaylight(this.props.date, this.props.sunrise, this.props.sunset)}/>
+        )
     }
 }
 
@@ -52,10 +50,8 @@ export class Moon extends React.Component<{
 }> {
     render() {
         return (
-            <Wrapper>
-                <MoonCircle y={getMoonYPos(this.props.date, this.props.sunrise, this.props.sunset)}
-                    active={!isDaylight(this.props.date, this.props.sunrise, this.props.sunset)}/>
-            </Wrapper>
+            <MoonCircle y={getMoonYPos(this.props.date, this.props.sunrise, this.props.sunset)}
+                active={!isDaylight(this.props.date, this.props.sunrise, this.props.sunset)}/>
         )
     }
 }
@@ -81,12 +77,6 @@ export class MoonReflection extends React.Component<{
     }
 }
 
-const Wrapper = styled.div`
-    position: relative;
-    left: 0px;
-    top: 0px;
-    z-index: 50;
-`
 const ReflectionWrapper = styled.div`
     position: relative;
     left: 0px;
@@ -97,27 +87,26 @@ const ReflectionWrapper = styled.div`
 const Planet = styled.div<{y: string; active: boolean}>`
     width: 10vh;
     height: 10vh;
-    position: fixed;
+    position: absolute;
     left: 50%;
-    top: 50%;
+    top: 100%;
     transform: translate(-50%, ${props => props.y});
     display: ${props => props.active ? "block" : "none"};
     border-radius: 100%;
 `
 
 const SunCircle = styled(Planet)`
-    background-color: #fca400;
-    box-shadow: 0px 0px 5px 5px ${SUN_YELLOW};
+    box-shadow: 0px 0px 5px 1px black;
 `;
 
 const MoonCircle = styled(Planet)`
-    background-color: ${MOON_WHITE};
-    box-shadow: 0px 0px 5px 5px ${MOON_WHITE};
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px 1px #ffffff;
 `;
 
 const ReflectionCircle = styled.div<{y: string; opacity: number}>`
-    width: 15vh;
-    height: 7vh;
+    width: 10vh;
+    height: 10vh;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -127,13 +116,13 @@ const ReflectionCircle = styled.div<{y: string; opacity: number}>`
 `;
 
 const SunReflectionCircle = styled(ReflectionCircle)`
-    background-color: #fca400;
-    box-shadow: 0px 0px 5px 5px #fca400;
+    background-color: white;
+    box-shadow: 0px 0px 5px 5px white;
 `;
 
 const MoonReflectionCircle = styled(ReflectionCircle)`
-    background-color: ${MOON_WHITE};
-    box-shadow: 0px 0px 10px 20px ${MOON_WHITE};
+    background-color: #ffffff;
+    box-shadow: 0px 0px 5px 1px #ffffff;
 `;
 
 
@@ -143,7 +132,7 @@ const WavesAnimation = keyframes`
 `;
 
 const Waves = styled.div`
-  background: linear-gradient(180deg, #000000ee, #00000066, #000000ee, #00000066, #000000ee, #00000066, #000000);
+  background: linear-gradient(180deg, #00000088, #00000066, #00000088, #00000066, #00000088, #00000066, #00000088, #00000066, #00000088);
   background-size: 100% 40%;
 
   width: 200%;
@@ -158,7 +147,7 @@ const Waves = styled.div`
   border-radius: 100%;
 
   animation-name: ${WavesAnimation};
-  animation-duration: 15s;
+  animation-duration: 20s;
   animation-direction: normal;
   animation-iteration-count: infinite;
   animation-timing-function: linear;

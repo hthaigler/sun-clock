@@ -1,22 +1,21 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { WATER_BLUE } from "../consts/colors";
 import { RootState } from "../store";
 import { getCycleOpacity, isDaylight } from "../utils";
 import { MoonReflection, SunReflection } from "./Planets";
 
 export function Water () {
     const weather = useSelector((state: RootState) => state.weather)
-    const timezone = useSelector((state: RootState) => state.timezone)
+    const timestate = useSelector((state: RootState) => state.time)
     return (
         <div>
             <TheWater>
-                <SunReflection temp={weather.main.temp} date={new Date(new Date().toLocaleString('en-US', { timeZone: timezone }))}
+                <SunReflection temp={weather.main.temp} date={timestate.time}
                     sunrise={weather.sys.sunrise} sunset={weather.sys.sunset}/>
-                <MoonReflection temp={weather.main.temp} date={new Date(new Date().toLocaleString('en-US', { timeZone: timezone }))}
+                <MoonReflection temp={weather.main.temp} date={timestate.time}
                     sunrise={weather.sys.sunrise} sunset={weather.sys.sunset}/>
-                <NightWater opacity={1 - getCycleOpacity(new Date(new Date().toLocaleString('en-US', { timeZone: timezone })), weather.sys.sunrise, weather.sys.sunset, true)}
-                    active={!isDaylight(new Date(new Date().toLocaleString('en-US', { timeZone: timezone })), weather.sys.sunrise, weather.sys.sunset)}
+                <NightWater opacity={1 - getCycleOpacity(timestate.time, weather.sys.sunrise, weather.sys.sunset, true)}
+                    active={!isDaylight(timestate.time, weather.sys.sunrise, weather.sys.sunset)}
                 />
             </TheWater>
         </div>
@@ -25,7 +24,8 @@ export function Water () {
 
 
 const TheWater = styled.div`
-    background-color: ${WATER_BLUE};
+    background-color: black;
+    border-top: .5px solid white;
     width: 100vw;
     height: 50vh;
     position: fixed;

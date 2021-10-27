@@ -1,22 +1,20 @@
 import { useSelector } from "react-redux";
 import styled from "styled-components";
-import { SKY_BLUE } from "../consts/colors";
 import { RootState } from "../store";
-import { getCycleOpacity, isDaylight } from "../utils";
+import { isDaylight } from "../utils";
 import { Moon, Sun } from "./Planets";
 
 export function Sky () {
     const weather = useSelector((state: RootState) => state.weather)
-    const timezone = useSelector((state: RootState) => state.timezone)
+    const timestate = useSelector((state: RootState) => state.time)
     return (
         <div>
             <TheSky>
-                <Sun temp={weather.main.temp} date={new Date(new Date().toLocaleString('en-US', { timeZone: timezone }))}
+                <Sun temp={weather.main.temp} date={timestate.time}
                     sunrise={weather.sys.sunrise} sunset={weather.sys.sunset}/>
-                <Moon temp={weather.main.temp} date={new Date(new Date().toLocaleString('en-US', { timeZone: timezone }))}
+                <Moon temp={weather.main.temp} date={timestate.time}
                     sunrise={weather.sys.sunrise} sunset={weather.sys.sunset}/>
-                <NightSky opacity={1 - getCycleOpacity(new Date(new Date().toLocaleString('en-US', { timeZone: timezone })), weather.sys.sunrise, weather.sys.sunset, true)}
-                    active={!isDaylight(new Date(new Date().toLocaleString('en-US', { timeZone: timezone })), weather.sys.sunrise, weather.sys.sunset)}
+                <NightSky active={!isDaylight(timestate.time, weather.sys.sunrise, weather.sys.sunset)}
                 />
             </TheSky>
         </div>
@@ -25,18 +23,17 @@ export function Sky () {
 
 
 const TheSky = styled.div`
-    background-color: ${SKY_BLUE};
     width: 100vw;
     height: 50vh;
-    position: fixed;
+    position: relative;
     left: 0%;
     top: 0%;
     z-index: -3;
+    overflow: hidden;
 `;
 
-const NightSky = styled(TheSky)<{opacity: number; active: boolean}>`
+const NightSky = styled(TheSky)<{active: boolean}>`
     background-color: #020608;
-    z-index: 0;
-    opacity: ${props => props.opacity};
+    z-index: -2;
     display: ${props => props.active ? "block" : "none"};
 `;

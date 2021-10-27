@@ -4,6 +4,8 @@ import { updateWeather, WeatherData } from './state/weather';
 import { Sky } from './components/Sky';
 import { useDispatch } from 'react-redux';
 import { Water } from './components/Water';
+import styled from 'styled-components';
+import { TimezoneSelector } from './components/TimeSelector';
 
 function App () {
 
@@ -24,8 +26,16 @@ function App () {
     <div className="App">
       <Water/>
       <Sky/>
+      <TimezoneWrapper>
+        <TimezoneSelector></TimezoneSelector>
+      </TimezoneWrapper>
     </div>
   )
 }
 
 export default App;
+
+const TimezoneWrapper = styled.div`
+  position: fixed;
+  bottom: 0px;
+`

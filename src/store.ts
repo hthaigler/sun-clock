@@ -1,11 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import Timezone from './state/timezone'
+import TimeState from './state/time'
 import WeatherSlice from './state/weather'
 
 export const store = configureStore({
   reducer: {
       weather: WeatherSlice,
-      timezone: Timezone
+      time: TimeState
   },
 })
 
