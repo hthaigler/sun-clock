@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/sun-clock/static/css/main.6dea0f05.chunk.css",
-    "main.js": "/sun-clock/static/js/main.7c7052ff.chunk.js",
-    "main.js.map": "/sun-clock/static/js/main.7c7052ff.chunk.js.map",
+    "main.js": "/sun-clock/static/js/main.e1d3e70a.chunk.js",
+    "main.js.map": "/sun-clock/static/js/main.e1d3e70a.chunk.js.map",
     "runtime-main.js": "/sun-clock/static/js/runtime-main.6794fb1d.js",
     "runtime-main.js.map": "/sun-clock/static/js/runtime-main.6794fb1d.js.map",
     "static/js/2.318be538.chunk.js": "/sun-clock/static/js/2.318be538.chunk.js",
@@ -17,6 +17,6 @@
     "static/js/runtime-main.6794fb1d.js",
     "static/js/2.318be538.chunk.js",
     "static/css/main.6dea0f05.chunk.css",
-    "static/js/main.7c7052ff.chunk.js"
+    "static/js/main.e1d3e70a.chunk.js"
   ]
 }
